@@ -163,7 +163,9 @@ module Spree
             item_weight *= multiplier
 
             quantity = line_item.quantity
-            if max_weight <= 0
+            if line_item.digital?
+              0
+            elsif max_weight <= 0
               item_weight * quantity
             elsif item_weight == 0
               0
