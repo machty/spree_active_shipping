@@ -39,6 +39,10 @@
     <td><%= @config[:handling_fee] %></td>
   </tr>
   <tr>
+    <td>Max Weight Package:</td>
+    <td><%= @config[:max_weight_per_package] %></td>
+  </tr>
+  <tr>
     <td>Test Mode:</td>
     <td><%= @config[:test_mode] %></td>
   </tr>
@@ -79,25 +83,6 @@
   <tr>
     <td>UPS Shipper Number:</td>
     <td><%= @config[:shipper_number] %></td>
-  </tr>
-</table>
-
-<table>
-  <tr>
-    <td>FedEx Login:</td>
-    <td><%= @config[:fedex_login] %></td>
-  </tr>
-  <tr>
-    <td>FedEx Password:</td>
-    <td><%= @config[:fedex_password] %></td>
-  </tr>
-  <tr>
-    <td>FedEx Key:</td>
-    <td><%= @config[:fedex_key] %></td>
-  </tr>
-  <tr>
-    <td>FedEx Account:</td>
-    <td><%= @config[:fedex_account] %></td>
   </tr>
 </table>
 
