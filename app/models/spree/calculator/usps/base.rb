@@ -5,6 +5,19 @@ module Spree
     module Usps
       class Base < Spree::Calculator::ActiveShipping::Base
 
+        def available?(order)
+          if self.class.to_s =~ /International/
+            # This is motivated by the YokoKimThurston album
+            if order.products.any? { |p| p.meta_keywords == "priority_mail_express_international_only" }
+              false
+            else
+              true
+            end
+          else
+            super
+          end
+        end
+
         def compute(object)
           if object.is_a?(Array)
             order = object.first.order
