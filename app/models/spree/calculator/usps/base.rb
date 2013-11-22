@@ -5,14 +5,18 @@ module Spree
     module Usps
       class Base < Spree::Calculator::ActiveShipping::Base
 
+        def exclusive_priority_shipping?(order)
+          words = %w{priority_only priority_mail_express_international_only}
+
+          order.products.any? do |p|
+            words.include?(p.meta_keywords)
+          end
+        end
+
         def available?(order)
-          if self.class.to_s =~ /International/
-            # This is motivated by the YokoKimThurston album
-            if order.products.any? { |p| p.meta_keywords == "priority_mail_express_international_only" }
-              false
-            else
-              true
-            end
+          # This is motivated by the YokoKimThurston album
+          if exclusive_priority_shipping?(order)
+            false
           else
             super
           end
